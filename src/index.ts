@@ -95,10 +95,32 @@ app.post('/agent', async (req, res) => {
   try {
     const { query } = req.body as QueryRequest;
 
+    const urlMatch = query.match(/https?:\/\/[^\s]+/i);
+    if (urlMatch) {
+      const url = urlMatch[0];
+      try {
+        const extractedContent = await contentExtractor.extractContent(url);
+        if (!extractedContent.content) {
+          throw new Error('Failed to extract content from URL');
+        }
+        const summary = await llmProcessor.summarizeArticle(url, extractedContent.content);
+        res.json({
+          answer: summary,
+          sources: [{
+            title: extractedContent.title || url,
+            url: url,
+            date: extractedContent.date || new Date().toISOString()
+          }]
+        });
+        return;
+      } catch (error) {
+        console.error('Error processing URL:', error);
+        throw new Error('Failed to process URL');
+      }
+    }
+
     const topic = await llmProcessor.extractTopicFromQuery(query);
-
     const similarArticles = await vectorOperations.findRelevantArticlesByKeyword(topic);
-
     const response = await llmProcessor.processQuery(
       query,
       similarArticles.map(result => result.article)
