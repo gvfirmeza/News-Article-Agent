@@ -14,7 +14,7 @@ A Node.js-based query-response application that integrates with LLM to create a 
 
 - **Backend**: Express.js with TypeScript
 - **Vector Database**: Supabase with pgvector
-- **LLM Integration**: GROQ API with gemma2-9b-it model
+- **LLM Integration**: GEMINI API with gemini-1.5-flash model
 - **Message Queue**: Kafka for real-time article ingestion
 - **Content Processing**: Cheerio for HTML parsing
 
@@ -50,8 +50,8 @@ src/
    KAFKA_TOPIC_NAME="news"
    KAFKA_GROUP_ID_PREFIX="test-task-"
 
-   # GROQ
-   GROQ_API_KEY="your-groq-api-key"
+   # GEMINI
+   GEMINI_API_KEY="your-groq-api-key"
 
    # Supabase
    SUPABASE_URL="your-supabase-url"
@@ -123,15 +123,3 @@ Send queries to the news article agent.
    - Use worker threads for heavy processing
    - Implement progressive loading
    - Cache preprocessed content
-
-## Deployment
-
-The application is configured for deployment on Vercel:
-
-1. Connect your GitHub repository to Vercel
-2. Configure environment variables in Vercel dashboard
-3. Deploy using Vercel's Node.js runtime
-
-## License
-
-ISC
