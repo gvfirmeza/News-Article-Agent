@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.js"
+    }
+  ],
+  "env": {
+    "KAFKA_BROKER": "@kafka_broker",
+    "KAFKA_USERNAME": "@kafka_username",
+    "KAFKA_PASSWORD": "@kafka_password",
+    "KAFKA_TOPIC_NAME": "@kafka_topic_name",
+    "KAFKA_GROUP_ID_PREFIX": "@kafka_group_id_prefix",
+    "GEMINI_API_KEY": "@gemini_api_key",
+    "SUPABASE_URL": "@supabase_url",
+    "SUPABASE_KEY": "@supabase_key"
+  }
+}
