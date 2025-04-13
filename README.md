@@ -1,5 +1,7 @@
 # News Article Agent
 
+**Live Demo**: [https://news-article-agent.vercel.app/](https://news-article-agent.vercel.app/)
+
 A Node.js-based query-response application that integrates with LLM to create a Retrieval-Augmented Generation (RAG) system using Supabase as vector database. The application ingests news article links, extracts content, and provides intelligent answers to user queries.
 
 ## Features

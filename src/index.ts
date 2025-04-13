@@ -139,7 +139,4 @@ app.get('/health', (_, res) => {
   res.json({ status: 'ok' });
 });
 
-const port = config.server.port;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+export default app;

@@ -2,24 +2,24 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/index.js",
+      "src": "src/index.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/agent",
+      "methods": ["POST"],
+      "dest": "src/index.ts"
+    },
+    {
+      "src": "/health",
+      "methods": ["GET"],
+      "dest": "src/index.ts"
+    },
+    {
       "src": "/(.*)",
-      "dest": "dist/index.js"
+      "dest": "src/index.ts"
     }
-  ],
-  "env": {
-    "KAFKA_BROKER": "@kafka_broker",
-    "KAFKA_USERNAME": "@kafka_username",
-    "KAFKA_PASSWORD": "@kafka_password",
-    "KAFKA_TOPIC_NAME": "@kafka_topic_name",
-    "KAFKA_GROUP_ID_PREFIX": "@kafka_group_id_prefix",
-    "GEMINI_API_KEY": "@gemini_api_key",
-    "SUPABASE_URL": "@supabase_url",
-    "SUPABASE_KEY": "@supabase_key"
-  }
+  ]
 }
